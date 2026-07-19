@@ -2,13 +2,23 @@
 resolver = "2"
 members = [
     "core",
-    "compositor",
-    "renderer",
+    "command",
     "commands",
+    "compositor",
+    "config",
+    "renderer",
+    "shell",
+    "term",
+    "theme",
+    "notes",
+    "dashboard",
+    "launcher",
     "vision",
     "plugins",
+    "plugins/slate-plugin",
     "cli",
-    "config"
+    "ctl",
+    "ipc"
 ]
 
 [workspace.package]
@@ -20,7 +30,7 @@ repository = "https://github.com/flessan/slate-de"
 
 [workspace.dependencies]
 # Wayland & Graphics
-smithay = { version = "0.3", features = ["backend_gbm", "backend_libinput", "desktop"] }
+smithay = { version = "0.3", features = ["backend_gbm", "backend_libinput", "backend_session_libseat", "backend_udev", "input", "wayland-server", "wayland-protocols"] }
 wayland-server = "0.31"
 wayland-protocols = { version = "0.31", features = ["staging"] }
 

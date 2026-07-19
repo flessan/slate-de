@@ -6,8 +6,8 @@ all: build
 # Build Slate-DE
 build:
 	@echo "Building Slate-DE..."
-	cargo build --release
-	@echo "Build complete: target/release/cli"
+	cargo build --release --package slate-shell --package slate-command --package cli
+	@echo "Build complete: target/release/slate (shell), target/release/cli (launcher)"
 
 # Run tests
 test:
@@ -18,9 +18,9 @@ test:
 install: build
 	@echo "Installing Slate-DE..."
 	mkdir -p $(HOME)/.local/bin
-	cp target/release/cli $(HOME)/.local/bin/slate-de
-	chmod +x $(HOME)/.local/bin/slate-de
-	@echo "Installed to $(HOME)/.local/bin/slate-de"
+	cp target/release/slate $(HOME)/.local/bin/slate 2>/dev/null || cp target/release/cli $(HOME)/.local/bin/slate-de
+	chmod +x $(HOME)/.local/bin/slate $(HOME)/.local/bin/slate-de 2>/dev/null || true
+	@echo "Installed to $(HOME)/.local/bin/ (slate / slate-de)"
 
 # Quick install using the install script
 quick-install:
@@ -45,7 +45,7 @@ lint:
 
 # Run Slate-DE (for development)
 run:
-	cargo run --release
+	cargo run --release --package slate-shell --bin slate || cargo run --release --package cli
 
 # Check (format + lint + test)
 check: format lint test

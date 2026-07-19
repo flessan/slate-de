@@ -1,0 +1,44 @@
+#!/bin/bash
+# Slate-DE Session Launcher — real Wayland desktop session
+# Usage: slate-session [options]
+#        slate-session --help
+
+set -euo pipefail
+
+# Detect binary location (same dir as this script, or PATH)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SLATE_BIN="${SLATE_BIN:-$SCRIPT_DIR/target/release/slate}"
+if [ ! -x "$SLATE_BIN" ]; then
+    SLATE_BIN="$(command -v slate || true)"
+fi
+if [ -z "$SLATE_BIN" ] || [ ! -x "$SLATE_BIN" ]; then
+    SLATE_BIN="slate"
+fi
+
+echo "========================================"
+echo "  Slate-DE Wayland Session"
+echo "  CLI-first · Pane-based · Wayland-native"
+echo "========================================"
+echo "  Binary: $SLATE_BIN"
+echo ""
+
+# Wayland session environment
+export XDG_SESSION_TYPE=wayland
+export XDG_CURRENT_DESKTOP=Slate-DE
+export XDG_SESSION_DESKTOP=slate-de
+export DESKTOP_SESSION=slate-de
+export QT_QPA_PLATFORM=wayland
+export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+export MOZ_ENABLE_WAYLAND=1
+export ELECTRON_OZONE_PLATFORM_HINT=wayland
+export SDL_VIDEODRIVER=wayland
+export GDK_BACKEND=wayland,x11
+export CLUTTER_BACKEND=wayland
+
+# Ensure config directory exists
+mkdir -p "${XDG_CONFIG_HOME:-$HOME/.config}/slate"
+mkdir -p "${XDG_DATA_HOME:-$HOME/.local/share}/slate-de"
+mkdir -p "${XDG_STATE_HOME:-$HOME/.local/state}/slate-de"
+
+# Launch the desktop
+exec "$SLATE_BIN" "$@"

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Slate-DE
+Comment=CLI-First Wayland Desktop Environment
+Exec=/usr/bin/env bash -c 'exec slate-session'
+Type=Application
+Terminal=false
+Icon=slate-de
+Categories=Utility;DesktopEnvironment;
