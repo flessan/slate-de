@@ -1,0 +1,67 @@
+# ============================================================================
+# Slate default configuration
+#
+# This file is compiled into the binary. Your personal overrides live in
+# ~/.config/slate/config.toml and are deep-merged on top of these defaults.
+# Reference: docs/CONFIG.md — or run `config keys` / `config get <path>`.
+# ============================================================================
+
+[ui]
+# Frame tick in milliseconds (clock/status refresh granularity).
+tick_ms = 250
+# Gap between panes in cells.
+gap = 0
+# Show the status bar on top.
+status_bar = true
+# Unicode glyphs and borders; set false for ASCII-only terminals.
+unicode = true
+
+[prompt]
+# The character at the start of the input line.
+symbol = "❯"
+# Number of persisted history entries.
+history_size = 1000
+# Print the welcome banner on fresh sessions.
+welcome = true
+
+[theme]
+name = "slate-dark"
+
+[notes]
+# Custom notes directory (empty = XDG data dir / notes).
+dir = ""
+autosave = true
+
+[dashboard]
+# Widgets shown in the dashboard pane, in order. Run `dashboard widgets`.
+widgets = ["clock", "date", "uptime", "cpu", "memory", "disk", "battery", "network", "volume", "git", "music"]
+# Demo mode renders deterministic fake data (for screenshots/tests).
+demo = false
+
+[search]
+# Directories indexed by universal search (supports ~).
+roots = ["~"]
+# Recursion depth when walking roots.
+depth = 3
+# Cap on indexed file paths.
+max_entries = 4000
+include_hidden = false
+
+[plugins]
+# Custom plugin directory (empty = XDG data dir / plugins).
+dir = ""
+
+[vision]
+# Default provider for `vision <file>` · providers: lens, bing, yandex, ocr, qr
+default_provider = "lens"
+
+[ipc]
+# Custom socket path (empty = $XDG_RUNTIME_DIR/slate.sock).
+socket = ""
+
+[workspaces]
+default = "main"
+
+# Per-workspace layout overrides, e.g.
+# [workspace_layouts]
+# coding = "(prompt:80 | notes:20):78 / logs:22"

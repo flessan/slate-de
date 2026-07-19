@@ -1,0 +1,21 @@
+# High Contrast — accessibility-first theme.
+name = "contrast"
+
+[palette]
+bg = "black"
+fg = "white"
+muted = "bright-white"
+accent = "bright-cyan"
+accent2 = "bright-magenta"
+ok = "bright-green"
+warn = "bright-yellow"
+error = "bright-red"
+selection = "blue"
+border = "white"
+border_focused = "bright-yellow"
+bar_bg = "blue"
+bar_fg = "bright-white"
+
+[style]
+unicode = true
+borders = "plain"

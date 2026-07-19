@@ -1,0 +1,7 @@
+[package]
+name = "cli"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+serde = { workspace = true, optional = true }

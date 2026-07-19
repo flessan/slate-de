@@ -1,0 +1,26 @@
+# ASCII — zero Unicode, works on the Linux console/serial/tmux windows.
+name = "ascii"
+
+[palette]
+bg = "black"
+fg = "white"
+muted = "bright-black"
+accent = "bright-cyan"
+accent2 = "bright-magenta"
+ok = "green"
+warn = "yellow"
+error = "red"
+selection = "blue"
+border = "bright-black"
+border_focused = "bright-green"
+bar_bg = "blue"
+bar_fg = "white"
+
+[style]
+unicode = false
+borders = "ascii"
+
+[glyphs]
+prompt = ">"
+ok = "[ok]"
+err = "[x]"

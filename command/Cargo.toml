@@ -1,0 +1,23 @@
+[package]
+name = "slate-command"
+description = "Command system for Slate: lexer, registry, built-in commands, command context"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+homepage.workspace = true
+repository.workspace = true
+authors.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+slate-core = { path = "../core" }
+slate-config = { path = "../config" }
+slate-theme = { path = "../theme" }
+slate-notes = { path = "../notes" }
+slate-dashboard = { path = "../dashboard" }
+slate-launcher = { path = "../launcher" }
+slate-plugin = { path = "../plugins/slate-plugin" }
+slate-vision = { path = "../vision" }

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slate-DE | The CLI-First Wayland Compositor</title>
+    <link rel="stylesheet" href="src/styles/main.css">
+
+    <meta property="og:image" content="src/icon.svg">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Slate-DE | The CLI-First Wayland Compositor">
+    <meta property="og:description" content="A pane-based, scriptable desktop environment built in Rust.">
+
+    <meta property="twitter:image" content="src/icon.svg">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Slate-DE | The CLI-First Wayland Compositor">
+    <meta property="twitter:description" content="A pane-based, scriptable desktop environment built in Rust.">
+
+    <link rel="icon" type="image/svg+xml" href="src/icon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <nav>
+        <div class="container">
+            <span class="logo">SLATE-DE</span>
+            <div class="links">
+                <a href="#features">Features</a>
+                <a href="#architecture">Architecture</a>
+                <a href="https://github.com/flessan/slate-de">GitHub</a>
+                <a href="https://thio.qzz.io">Support</a>
+            </div>
+        </div>
+    </nav>
+
+    <header>
+        <div class="container">
+            <img src="./src/icon.svg" alt="Slate-DE Icon" style="width: 256px; margin-bottom: 16px;">
+            <h1>The CLI-First <span class="accent">Wayland</span> Compositor.</h1>
+            <p class="subtitle">A pane-based, scriptable desktop environment built in Rust. Everything is a command.
+                Everything is searchable.</p>
+
+            <div class="cta-group">
+                <code id="install-cmd"
+                    class="install-cmd">curl -sSf https://slate.dotfiles.qzz.io/install.sh | bash</code>
+
+                <button id="copy-btn" onclick="copyCommand()"
+                    onmouseover="this.style.backgroundColor='#eaeef2'; this.style.borderColor='rgba(27,31,36,0.3)'"
+                    onmouseout="this.style.backgroundColor='#161b22'; this.style.borderColor='rgba(80, 85, 91, 0.15)'"
+                    style="display: inline-flex; align-items: center; gap: 7px; padding: 8px 12px; font-size: 14px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-weight: 500; color: #eaeef2; background-color: #161b22; border: 3px solid rgba(80, 85, 91, 0.15); border-radius: 6px; cursor: pointer; transition: all 0.1s ease-in-out; outline: none;">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: block;">
+                        <path
+                            d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z">
+                        </path>
+                        <path
+                            d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z">
+                        </path>
+                    </svg>
+                    <span>Copy and Paste on Your Bash</span>
+                </button>
+            </div>
+        </div>
+
+        <script>
+            function copyCommand() {
+                const cmdText = document.getElementById('install-cmd').innerText.trim();
+                const btn = document.getElementById('copy-btn');
+
+                navigator.clipboard.writeText(cmdText).then(() => {
+                    // Store original state
+                    const originalHTML = btn.innerHTML;
+                    const originalBg = '#111111';
+                    const originalBorder = 'rgba(27,31,36,0.15)';
+                    const originalColor = '#eaeef2';
+
+                    // Change to "Copied!" state (GitHub green)
+                    btn.innerHTML = `
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: block;">
+                        <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+                    </svg>
+                    <span>Copied!</span>
+                `;
+                    btn.style.backgroundColor = '#dafbe1';
+                    btn.style.borderColor = '#2da44e';
+                    btn.style.color = '#1a7f37';
+
+                    // Revert after 2 seconds
+                    setTimeout(() => {
+                        btn.innerHTML = originalHTML;
+                        btn.style.backgroundColor = originalBg;
+                        btn.style.borderColor = originalBorder;
+                        btn.style.color = originalColor;
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Failed to copy text: ', err);
+                });
+            }
+        </script>
+    </header>
+
+    <section id="features" class="features">
+        <div class="container">
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Command-Centric</h3>
+                    <p>Unified command registry for window management, system control, and vision analysis.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>WASM Plugins</h3>
+                    <p>Low-latency extensions via Wasmtime. Script your DE in any language targeting WebAssembly.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Vision-Aware</h3>
+                    <p>Integrated OCR and object detection. Query the text content of any application surface.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>TUI Native</h3>
+                    <p>Render Ratatui frames directly to Wayland SHM buffers. Zero terminal overhead.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="architecture" class="architecture">
+        <div class="container">
+            <h2>Modular by Design</h2>
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="terminal-content">
+                    <pre>
+<span class="dir">core/</span>       - Reactive state & node graph
+<span class="dir">compositor/</span> - Smithay-powered Wayland server
+<span class="dir">renderer/</span>   - High-perf TUI pipeline
+<span class="dir">vision/</span>     - Local & Cloud OCR providers
+<span class="dir">plugins/</span>    - WASM sandboxed runtime
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Slate-DE Project. Built with Rust & Smithay.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

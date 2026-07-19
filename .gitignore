@@ -1,0 +1,27 @@
+# Rust
+/target
+**/*.rs.bk
+Cargo.lock.bak
+
+# Editor / OS
+*.swp
+*.swo
+*~
+.DS_Store
+.idea/
+.vscode/
+
+# Build / packaging artifacts
+/dist
+/pkg
+/vendor
+*.deb
+*.rpm
+*.AppImage
+*.tar.gz
+*.tar.zst
+*.pkg.tar.zst
+
+# Local tooling
+.cargo-local/
+*.log

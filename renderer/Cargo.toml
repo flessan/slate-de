@@ -1,0 +1,10 @@
+[package]
+name = "renderer"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+core = { path = "../core" }
+ratatui = { workspace = true }
+thiserror = { workspace = true }
+serde = { workspace = true, optional = true }

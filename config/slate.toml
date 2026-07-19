@@ -1,0 +1,50 @@
+[server]
+socket_name = "slate-0"
+frame_rate = 60
+
+[vision]
+default_provider = "local-ocr" # Options: "local-ocr", "tesseract", "google-cloud"
+auto_scan_interval_ms = 500
+
+[vision.providers.local-ocr]
+model_path = "/usr/share/slate/models/ocr-v1.onnx"
+threads = 4
+
+[theme]
+primary_color = "#88C0D0"
+background_color = "#2E3440"
+border_style = "rounded" # "plain", "rounded", "double"
+unicode_icons = true
+font_family = "JetBrainsMono Nerd Font"
+
+[workspaces]
+# Layouts are rearrangeable pane definitions
+[[workspaces.list]]
+name = "Coding"
+layout = "tiled"
+default_panes = [
+    { type = "terminal", command = "nvim", ratio = 0.7 },
+    { type = "terminal", command = "bprobe", ratio = 0.3 }
+]
+
+[[workspaces.list]]
+name = "Gaming"
+layout = "floating"
+default_panes = [
+    { type = "app", exec = "steam", x = 0, y = 0, w = 1920, h = 1080 }
+]
+
+[plugins]
+# WASM plugin management
+enabled = ["workspace-switcher", "git-status-bar", "vision-bridge"]
+
+[plugins.settings.git-status-bar]
+refresh_rate = 5000
+show_branch = true
+
+[keybindings]
+# Everything is a command
+"Mod-Space" = "spawn search-overlay"
+"Mod-Return" = "spawn terminal"
+"Mod-Shift-Q" = "quit"
+"Mod-P" = "vision-capture"

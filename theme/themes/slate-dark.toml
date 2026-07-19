@@ -1,0 +1,21 @@
+# Slate Dark — the default theme.
+name = "slate-dark"
+
+[palette]
+bg = "#101016"
+fg = "#e4e4ec"
+muted = "#848494"
+accent = "#7aa2f7"
+accent2 = "#bb9af7"
+ok = "#9ece6a"
+warn = "#e0af68"
+error = "#f7768e"
+selection = "#2a324e"
+border = "#383c52"
+border_focused = "#7aa2f7"
+bar_bg = "#181822"
+bar_fg = "#e4e4ec"
+
+[style]
+unicode = true
+borders = "rounded"

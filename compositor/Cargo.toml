@@ -1,0 +1,9 @@
+[package]
+name = "compositor"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+smithay = { workspace = true }
+wayland-server = { workspace = true }
+serde = { workspace = true, optional = true }

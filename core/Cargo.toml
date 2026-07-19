@@ -1,0 +1,10 @@
+[package]
+name = "core"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+async-trait = "0.1"
+ratatui = { workspace = true }
+serde = { workspace = true, features = ["derive"] }
+anyhow = { workspace = true }

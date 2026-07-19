@@ -1,0 +1,18 @@
+[package]
+name = "slate-theme"
+description = "Theme engine for Slate: palettes, glyphs, border styles, layout presets"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+homepage.workspace = true
+repository.workspace = true
+authors.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+slate-core = { path = "../core" }
+slate-config = { path = "../config" }
+slate-term = { path = "../term" }

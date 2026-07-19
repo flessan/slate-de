@@ -1,0 +1,21 @@
+# Slate Light — bright variant of the default theme.
+name = "slate-light"
+
+[palette]
+bg = "#f4f4f8"
+fg = "#20202a"
+muted = "#7b7b8c"
+accent = "#2e6de6"
+accent2 = "#7c3aed"
+ok = "#2f8f2f"
+warn = "#b36b00"
+error = "#c81e3a"
+selection = "#d8def9"
+border = "#b9b9c9"
+border_focused = "#2e6de6"
+bar_bg = "#e4e4ee"
+bar_fg = "#20202a"
+
+[style]
+unicode = true
+borders = "rounded"

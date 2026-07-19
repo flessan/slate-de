@@ -1,0 +1,21 @@
+[package]
+name = "slatectl"
+description = "Control client for a running slate session (scripting interface over the IPC socket)"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+homepage.workspace = true
+repository.workspace = true
+authors.workspace = true
+
+[lints]
+workspace = true
+
+[[bin]]
+name = "slatectl"
+path = "src/main.rs"
+
+[dependencies]
+slate-core = { path = "../core" }
+slate-ipc = { path = "../ipc" }

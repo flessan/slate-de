@@ -1,0 +1,21 @@
+# Mono — a grayscale theme for focus work (e-ink friendly).
+name = "mono"
+
+[palette]
+bg = "black"
+fg = "#d0d0d0"
+muted = "#707070"
+accent = "#f0f0f0"
+accent2 = "#b0b0b0"
+ok = "#c0c0c0"
+warn = "#e0e0e0"
+error = "white"
+selection = "#303030"
+border = "#484848"
+border_focused = "#e0e0e0"
+bar_bg = "#202020"
+bar_fg = "#e0e0e0"
+
+[style]
+unicode = true
+borders = "plain"
