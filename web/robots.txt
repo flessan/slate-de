@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://slate.dotfiles.qzz.io/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1

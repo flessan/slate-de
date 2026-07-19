@@ -34,15 +34,34 @@ Slate-DE is built as a Rust workspace with clear domain boundaries:
 
 ## Installation
 
-### Rapid Installation (One-Liner)
+### One-Click Installation (Recommended)
 
-Install dependencies and build the project directly using the bootstrap script:
+Slate-DE provides a complete one-click installer that automatically handles dependencies, builds the project, and sets up your environment:
 
 ```bash
-curl -sSf https://raw.githubusercontent.com/flessan/slate-de/main/scripts/install.sh | bash
+curl -sSf https://raw.githubusercontent.com/flessan/slate-de/main/install.sh | bash
+```
+
+That's it! The installer will:
+- Detect your Linux distribution (Ubuntu/Debian/Arch/Fedora)
+- Install all required system dependencies
+- Install Rust if not present
+- Clone the repository to `~/.local/share/slate-de`
+- Build Slate-DE in release mode
+- Create symlinks in `~/.local/bin`
+- Generate default configuration at `~/.config/slate/slate.toml`
+- Set up a session launcher (`slate-session`)
+
+After installation, restart your terminal and run:
+```bash
+slate-session  # Launch from TTY for full Wayland session
+# or
+slate-de       # Run the CLI directly
 ```
 
 ### Manual Installation
+
+If you prefer to install manually:
 
 1.  **Clone the repository**:
     ```bash
@@ -98,4 +117,4 @@ cargo test --workspace
 
 ## License
 
-This project is licensed under either the MIT License or the Apache License (Version 2.0) at your option.
+This project is licensed under either the MIT License or the Apache License (Version 2.0) IDK WHAT TO CHOOSE PLZ.

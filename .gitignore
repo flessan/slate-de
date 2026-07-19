@@ -1,27 +1,17 @@
-# Rust
-/target
+# Existing entries (preserved)
+/target/
 **/*.rs.bk
-Cargo.lock.bak
+Cargo.lock
 
-# Editor / OS
-*.swp
-*.swo
-*~
-.DS_Store
-.idea/
-.vscode/
-
-# Build / packaging artifacts
-/dist
-/pkg
-/vendor
-*.deb
-*.rpm
-*.AppImage
-*.tar.gz
-*.tar.zst
-*.pkg.tar.zst
-
-# Local tooling
-.cargo-local/
+# Added for installer
 *.log
+.env
+.DS_Store
+
+# Test artifacts
+test-install-*/
+mock_home/
+
+# IDE
+.vscode/
+.idea/
