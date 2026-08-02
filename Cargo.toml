@@ -1,31 +1,26 @@
 [workspace]
 resolver = "2"
 members = [
-    "core",
-    "command",
-    "commands",
-    "compositor",
-    "config",
-    "renderer",
-    "shell",
-    "term",
-    "theme",
-    "notes",
-    "dashboard",
-    "launcher",
-    "vision",
-    "plugins",
-    "plugins/slate-plugin",
-    "cli",
-    "ctl",
-    "ipc"
+ "core",
+ "command",
+ "commands",
+ "compositor",
+ "config",
+ "shell",
+ "term",
+ "theme",
+ "vision",
+ "cli",
+ "notes",      # Stub added (see Step 3)
+ "dashboard",  # Stub added (see Step 3)
+ "launcher",   # Stub added (see Step 3)
 ]
 
 [workspace.package]
-rust-version = "1.70"
+rust-version = "1.75"
 homepage = "https://github.com/flessan/slate-de"
 version = "0.1.0"
-edition = "2026"
+edition = "2021"
 authors = ["flessan"]
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/flessan/slate-de"
