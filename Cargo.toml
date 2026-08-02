@@ -1,19 +1,24 @@
 [workspace]
 resolver = "2"
 members = [
- "core",
- "command",
- "commands",
- "compositor",
- "config",
- "shell",
- "term",
- "theme",
- "vision",
- "cli",
- "notes",      # Stub added (see Step 3)
- "dashboard",  # Stub added (see Step 3)
- "launcher",   # Stub added (see Step 3)
+    "core",
+    "command",
+    "commands",
+    "compositor",
+    "config",
+    "renderer",
+    "shell",
+    "term",
+    "theme",
+    "notes",
+    "dashboard",
+    "launcher",
+    "vision",
+    "plugins",
+    "plugins/slate-plugin",
+    "cli",
+    "ctl",
+    "ipc"
 ]
 
 [workspace.package]
