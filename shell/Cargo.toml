@@ -25,10 +25,9 @@ slate-core = { path = "../core" }
 slate-config = { path = "../config" }
 slate-term = { path = "../term" }
 slate-theme = { path = "../theme" }
+slate-command = { path = "../command" }
+slate-vision = { path = "../vision" }
+# Added stubs to satisfy imports in app.rs and panes.rs
 slate-notes = { path = "../notes" }
 slate-dashboard = { path = "../dashboard" }
 slate-launcher = { path = "../launcher" }
-slate-command = { path = "../command" }
-slate-ipc = { path = "../ipc" }
-slate-plugin = { path = "../plugins/slate-plugin" }
-slate-vision = { path = "../vision" }
