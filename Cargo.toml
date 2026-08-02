@@ -1,24 +1,24 @@
 [workspace]
 resolver = "2"
 members = [
-    "core",
-    "command",
-    "commands",
-    "compositor",
-    "config",
-    "renderer",
-    "shell",
-    "term",
-    "theme",
-    "notes",
-    "dashboard",
-    "launcher",
-    "vision",
-    "plugins",
-    "plugins/slate-plugin",
-    "cli",
-    "ctl",
-    "ipc"
+ "core",
+ "command",
+ "commands",
+ "compositor",
+ "config",
+ "renderer",
+ "shell",
+ "term",
+ "theme",
+ "notes",
+ "dashboard",
+ "launcher",
+ "vision",
+ "plugins",
+ "plugins/slate-plugin",
+ "cli",
+ "ctl",
+ "ipc"
 ]
 
 [workspace.package]
@@ -57,3 +57,7 @@ tracing-subscriber = { version = "0.3", features = ["env-filter"] }
 anyhow = "1.0"
 thiserror = "1.0"
 parking_lot = "0.12"
+
+[workspace.lints]
+# Add your workspace lints here, e.g.:
+# rust.unsafe_code = "deny"
