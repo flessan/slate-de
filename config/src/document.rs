@@ -5,7 +5,7 @@ use slate_core::error::{Error, Result};
 use crate::value::{escape_basic, table_get, table_get_mut, Value};
 
 /// An ordered TOML document.
-#[derive(Clone, Debug, Default, PartialEq)]
+#[derive(Clone, Debug, PartialEq)]
 pub struct Document {
     pub root: Value,
 }
@@ -233,5 +233,11 @@ mod tests {
         let text2 = d.to_toml_string();
         assert!(text2.contains("[x]"));
         assert!(text2.contains("y-z = \"v\""));
+    }
+}
+
+impl Default for Document {
+    fn default() -> Self {
+        Self::new()
     }
 }

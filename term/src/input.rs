@@ -381,7 +381,7 @@ mod tests {
 
     #[test]
     fn mixed_stream() {
-        let keys = decode(b"a\x01\x1b[A\x1bj界");
+        let keys = decode(b"a\x01\x1b[A\x1bj\xE7\x95\x8C");
         assert_eq!(
             keys,
             vec![

@@ -40,8 +40,8 @@ pub struct Config {
 impl Config {
     /// Defaults only (no user file) — used as fallback and for `--print-config`.
     pub fn defaults() -> Self {
-        let doc = parser::parse(DEFAULT_CONFIG).unwrap_or_else(|_| Document::new());
-        Config { doc, path: paths::config_file() }
+        let root = parser::parse(DEFAULT_CONFIG).unwrap_or_else(|_| Document::new().root);
+        Config { doc: Document::from_value(root), path: paths::config_file() }
     }
 
     /// Load defaults merged with the user config file (missing file is OK).
@@ -55,12 +55,12 @@ impl Config {
             Ok(user_src) => {
                 let user = parser::parse(&user_src)
                     .map_err(|e| Error::parse("config", format!("{}: {e}", path.display())))?;
-                base = base.merged(user);
+                base = Document::from_value(base).merged(Document::from_value(user)).root;
             }
             Err(e) if e.kind() == std::io::ErrorKind::NotFound => {}
             Err(e) => return Err(Error::from(e)),
         }
-        Ok(Config { doc: base, path })
+        Ok(Config { doc: Document::from_value(base), path })
     }
 
     /// Serialize the effective configuration as TOML.
@@ -119,7 +119,7 @@ impl Config {
 
     /// Restore the built-in defaults and write them to the user config.
     pub fn reset(&mut self) -> Result<()> {
-        self.doc = parser::parse(DEFAULT_CONFIG)?;
+        self.doc = Document::from_value(parser::parse(DEFAULT_CONFIG)?);
         self.save()
     }
 

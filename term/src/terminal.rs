@@ -59,7 +59,8 @@ impl<B: Backend> Terminal<B> {
     {
         // Each frame starts blank so panes never see two-frame-old content.
         self.next.clear(Default::default());
-        render(&mut self.next, self.next.area());
+        let area = self.next.area();
+        render(&mut self.next, area);
         let changes = self.next.diff(&self.prev);
         self.backend.draw(&changes)?;
         self.backend.set_cursor(self.cursor)?;
