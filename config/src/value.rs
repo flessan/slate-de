@@ -2,6 +2,8 @@
 
 /// A parsed value. Tables preserve insertion order (stable round-trips).
 #[derive(Clone, Debug, PartialEq)]
+#[derive(Default)]
+#[derive(Default)]
 pub enum Value {
     Str(String),
     Int(i64),
