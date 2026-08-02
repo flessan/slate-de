@@ -87,7 +87,7 @@ install_dependencies() {
                 curl \
                 rustup
             ;;
-        "arch"|"manjaro"|"endeavouros")
+        "arch"|"manjaro"|"endeavouros"|"cachyos")
             sudo pacman -S --needed --noconfirm \
                 base-devel \
                 wayland \
@@ -326,7 +326,7 @@ print_success() {
     echo ""
 echo -e "${GREEN}╔════════════════════════════════════════════════════════════╗${NC}"
 echo -e "${GREEN}║                                                            ║${NC}"
-echo -e "${GREEN}║          Slate-DE Installation Complete!                    ║${NC}"
+echo -e "${GREEN}║          Slate-DE Installation Complete!                   ║${NC}"
 echo -e "${GREEN}║                                                            ║${NC}"
 echo -e "${GREEN}╚════════════════════════════════════════════════════════════╝${NC}"
     echo ""
@@ -353,7 +353,7 @@ echo -e "${GREEN}╚════════════════════
 main() {
     echo ""
     echo -e "${BLUE}╔════════════════════════════════════════════════════════════╗${NC}"
-    echo -e "${BLUE}║           Welcome to Slate-DE Installer v${SLATE_VERSION}              ║${NC}"
+    echo -e "${BLUE}║          Welcome to Slate-DE Installer v${SLATE_VERSION}              ║${NC}"
     echo -e "${BLUE}║     A CLI-first, pane-based, Wayland-native DE             ║${NC}"
     echo -e "${BLUE}╚════════════════════════════════════════════════════════════╝${NC}"
     echo ""

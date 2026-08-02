@@ -1,5 +1,5 @@
 [package]
-name = "config"
+name = "slate-config"
 version.workspace = true
 edition.workspace = true
 

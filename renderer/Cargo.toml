@@ -1,10 +1,10 @@
 [package]
-name = "renderer"
+name = "slate-renderer"
 version.workspace = true
 edition.workspace = true
 
 [dependencies]
-core = { path = "../core" }
+slate-core = { path = "../core" }
 ratatui = { workspace = true }
 thiserror = { workspace = true }
 serde = { workspace = true, optional = true }

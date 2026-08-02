@@ -1,5 +1,5 @@
 [package]
-name = "vision"
+name = "slate-vision"
 version.workspace = true
 edition.workspace = true
 
