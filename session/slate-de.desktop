@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Slate-DE
+Comment=Pane-based Wayland native desktop
+Exec=/usr/local/bin/slate-session
+Type=Application
+DesktopNames=SlateDE
