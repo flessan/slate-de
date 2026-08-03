@@ -17,7 +17,7 @@
 
 | **Current Version** | **Build Status** | **Branch** | **Rust Version** |
 | :--- | :--- | :--- | :--- |
-| `v0.1.0-alpha` | `passing` | `main` | `1.75+ (Stable)` |
+| `v0.1.0-alpha` | [![Rust](https://github.com/flessan/slate-de/actions/workflows/rust.yml/badge.svg)](https://github.com/flessan/slate-de/actions/workflows/rust.yml) | `main` | `1.75+ (Stable)` |
 
 </div>
 
