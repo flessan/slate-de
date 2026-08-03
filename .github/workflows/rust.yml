@@ -16,6 +16,19 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+          - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            pkg-config \
+            libudev-dev \
+            libwayland-dev \
+            libxkbcommon-dev \
+            libseat-dev \
+            libinput-dev \
+            libgbm-dev \
+            libdrm-dev \
+            libegl-dev
     - name: Build
       run: cargo build --verbose
     - name: Run tests
