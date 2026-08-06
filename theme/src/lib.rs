@@ -428,7 +428,7 @@ mod tests {
 
     #[test]
     fn user_theme_overrides() {
-        let src = r#"
+        let src = r##"
 name = "mine"
 [palette]
 accent = "#ff0000"
@@ -436,7 +436,7 @@ accent = "#ff0000"
 borders = "double"
 [glyphs]
 prompt = ">"
-"#;
+"##;
         let t = Theme::from_toml(src).unwrap();
         assert_eq!(t.palette.accent, Color::Rgb(255, 0, 0));
         assert_eq!(t.palette.fg, Palette::slate_dark().fg); // fallback
