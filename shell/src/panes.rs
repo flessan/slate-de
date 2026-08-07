@@ -538,14 +538,16 @@ impl Pane for DashboardPane {
             self.dashboard = Dashboard::new(&app.ctx.dashboard_widget_names());
             app.ctx.dashboard_dirty = false;
         }
-        let mut env = WidgetEnv {
-            probe: &mut self.probe,
-            cwd: &app.ctx.cwd,
-            workspace: app.ctx.workspaces.current_name(),
-            notifications: app.ctx.notifications.len(),
-            weather_location: app.ctx.weather_location().as_deref(),
-            demo: app.ctx.demo,
-        };
+        let binding = app.ctx.weather_location();
+
+let mut env = WidgetEnv {
+    probe: &mut self.probe,
+    notifications: app.ctx.notifications.len(),
+    weather_location: binding.as_deref(),
+    demo: app.ctx.demo,
+    cwd: &app.ctx.cwd,
+    workspace: app.ctx.workspaces.current_name(),
+};
         self.dashboard.refresh(&mut env);
     }
 

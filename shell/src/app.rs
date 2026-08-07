@@ -588,7 +588,7 @@ impl App {
     }
 
     fn draw_status_bar(&mut self, buf: &mut Buffer, area: Rect) {
-        let theme = self.ctx.theme();
+    let theme = self.ctx.theme().clone();
         let bar = Rect::new(area.x, area.y, area.w, 1);
         buf.fill(bar, theme.bar());
         let ws = self.ctx.workspaces.current_name();

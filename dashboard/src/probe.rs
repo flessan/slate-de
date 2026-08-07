@@ -287,7 +287,7 @@ pub fn volume_state() -> Option<(u8, bool)> {
         .next()?
         .parse()
         .ok()?;
-    Some(((ratio * 100.0).round() as u8).min(100), muted)
+    Some((((ratio * 100.0).round() as u8).min(100), muted))
 }
 
 /// Set output volume in percent via `wpctl`.
@@ -313,11 +313,14 @@ pub fn now_playing() -> Option<String> {
  /// Git state of a directory: `(branch, dirty files)`.
 pub fn git_state(cwd: &std::path::Path) -> (Option<String>, usize) {
     let dir = cwd.to_string_lossy();
-    let branch = proc::run_trimmed("git", &["-C", &dir, "rev-parse", "--abbrev-ref", "HEAD"])?;
+    let branch = proc::run_trimmed(
+    "git",
+    &["-C", &dir, "rev-parse", "--abbrev-ref", "HEAD"]
+);
     let dirty = proc::run_trimmed("git", &["-C", &dir, "status", "--porcelain"])
         .map(|s| s.lines().filter(|l| !l.trim().is_empty()).count())
         .unwrap_or(0);
-    (Some(branch), dirty)
+    (branch, dirty)
 }
 
 /// One-line weather from wttr.in (opt-in; needs `curl` and network).

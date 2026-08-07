@@ -30,6 +30,7 @@ use slate_core::error::{Error, Result};
 use slate_core::style::Line;
 use slate_core::{APP_NAME, VERSION};
 use slate_shell::{render_snapshot, App, SnapshotOptions, SnapshotView};
+use slate_term::Backend;
 use slate_term::backend::{AnsiBackend, RawMode};
 use slate_term::input::KeyDecoder;
 use slate_term::Terminal;

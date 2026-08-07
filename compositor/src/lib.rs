@@ -1,19 +1,40 @@
 use smithay::{
-    backend::input::KeyState,
-    delegate_compositor, delegate_output, delegate_seat, delegate_shm,
-    reexports::wayland_server::{Display, DisplayHandle},
+    delegate_compositor,
+    delegate_seat,
+    delegate_shm,
+
+    input::{
+        Seat,
+        SeatHandler,
+        SeatState<SlateState>,
+        pointer::CursorImageStatus,
+    },
+
+    reexports::wayland_server::{
+        DisplayHandle,
+        Client,
+        protocol::wl_surface::WlSurface,
+    },
+
     wayland::{
-        compositor::{CompositorHandler, CompositorClientState},
-        output::{OutputHandler, Output},
-        seat::{Seat, SeatHandler, SeatState},
-        shm::{ShmHandler, ShmState},
+        buffer::BufferHandler,
+
+        compositor::{
+            CompositorHandler,
+            CompositorState,
+            CompositorClientState,
+        },
+
+        shm::{
+            ShmHandler,
+            ShmState,
+        },
     },
 };
 
 pub struct SlateState {
     pub display_handle: DisplayHandle,
     pub compositor_state: CompositorClientState,
-    pub output_state: OutputState,
     pub seat_state: SeatState,
     pub shm_state: ShmState,
     pub seat: Seat<Self>,
@@ -22,8 +43,8 @@ pub struct SlateState {
 impl SlateState {
     pub fn new(display: &mut Display<Self>) -> Self {
         let dh = display.handle();
-        let compositor_state = CompositorClientState::new::<Self>(&dh);
-        let output_state = OutputState::new();
+        let compositor_state =
+    CompositorState::new::<SlateState>(&dh);
         let mut seat_state = SeatState::new();
         let shm_state = ShmState::new::<Self>(&dh, Vec::new());
 
@@ -42,7 +63,6 @@ impl SlateState {
 
 // Smithay Delegates
 delegate_compositor!(SlateState);
-delegate_output!(SlateState);
 delegate_seat!(SlateState);
 delegate_shm!(SlateState);
 
@@ -62,8 +82,6 @@ impl CompositorHandler for SlateState {
     ) {
     }
 }
-
-impl OutputHandler for SlateState {}
 
 impl ShmHandler for SlateState {
     fn shm_state(&self) -> &ShmState {

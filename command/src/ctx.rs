@@ -162,12 +162,12 @@ impl Ctx {
     }
 
     fn apply_config_layouts(&mut self) {
-        if let Some(Value::Table(table)) = self.cfg.get("workspace_layouts") {
+        if let Some(Value::Table(table)) = self.cfg.get("workspace_layouts").cloned() {
             for (name, v) in table {
                 if let Some(spec) = v.as_str() {
                     match LayoutSpec::parse(spec) {
                         Ok(layout) => {
-                            self.workspaces.set_layout(name, layout);
+                            self.workspaces.set_layout(&name, layout);
                             self.layout_dirty = true;
                         }
                         Err(e) => {
@@ -272,11 +272,18 @@ impl Ctx {
         }
         // 2) notes
         if let Ok(notes) = self.notes.list() {
-            for n in notes {
-                let action = format!("notes show {}", n.slug);
-                items.push(Item::new(ItemKind::Note, n.title, n.preview(), action).with_boost(10));
-            }
-        }
+    for n in notes {
+    let action = format!("notes show {}", n.slug);
+    let title = n.title.clone();
+
+    items.push(Item::new(
+        ItemKind::Note,
+        title,
+        n.preview(),
+        action,
+    ).with_boost(10));
+}
+}
         // 3) workspaces / themes
         for name in self.workspaces.names() {
             let action = format!("workspace switch {name}");

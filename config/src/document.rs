@@ -15,6 +15,10 @@ impl Document {
         Document { root: Value::Table(Vec::new()) }
     }
 
+    pub fn parse(src: &str) -> Result<Self> {
+    Ok(Document::from_value(crate::parser::parse(src)?))
+}
+
     pub fn from_value(root: Value) -> Self {
         Document { root }
     }

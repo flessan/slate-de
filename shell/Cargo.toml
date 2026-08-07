@@ -21,6 +21,7 @@ name = "slate"
 path = "src/main.rs"
 
 [dependencies]
+slate-ipc = { path = "../ipc" }
 slate-core = { path = "../core" }
 slate-config = { path = "../config" }
 slate-term = { path = "../term" }

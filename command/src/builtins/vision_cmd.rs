@@ -61,15 +61,15 @@ impl Command for VisionCmd {
                 let _ = ctx.cfg.set_and_save("vision.default_provider", name);
                 Ok(Output::text(format!("vision provider: {name}")))
             }
-            Some("lens") => lens_like(args.get(1), provider("lens").unwrap_or(&PROVIDERS[0]), ctx),
-            Some("bing") => lens_like(args.get(1), provider("bing").unwrap_or(&PROVIDERS[0]), ctx),
-            Some("yandex") => lens_like(args.get(1), provider("yandex").unwrap_or(&PROVIDERS[0]), ctx),
-            Some("qr") | Some("scan") => run_tool(provider("qr").unwrap_or(&PROVIDERS[4]), args.get(1), ctx),
-            Some("ocr") => run_tool(provider("ocr").unwrap_or(&PROVIDERS[3]), args.get(1), ctx),
-            Some("translate") => translate(args.get(1), ctx),
+            Some("lens") => lens_like(args.get(1).map(String::as_str), provider("lens").unwrap_or(&PROVIDERS[0]), ctx),
+Some("bing") => lens_like(args.get(1).map(String::as_str), provider("bing").unwrap_or(&PROVIDERS[0]), ctx),
+Some("yandex") => lens_like(args.get(1).map(String::as_str), provider("yandex").unwrap_or(&PROVIDERS[0]), ctx),
+Some("qr") | Some("scan") => run_tool(provider("qr").unwrap_or(&PROVIDERS[4]), args.get(1).map(String::as_str), ctx),
+Some("ocr") => run_tool(provider("ocr").unwrap_or(&PROVIDERS[3]), args.get(1).map(String::as_str), ctx),
+Some("translate") => translate(args.get(1).map(String::as_str), ctx),
             Some("screenshot") => screenshot(ctx),
             Some("clipboard") => clipboard_image(ctx),
-            Some("file") => default_route(args.get(1), ctx),
+            Some("file") => default_route(args.get(1).map(String::as_str), ctx),
             Some(target) => {
                 // `vision <something>`: treat as file/URL via default provider.
                 default_route(Some(target), ctx)
@@ -82,7 +82,7 @@ fn is_url(s: &str) -> bool {
     s.starts_with("http://") || s.starts_with("https://")
 }
 
-fn resolve_file(ctx: &Ctx, arg: Option<&String>) -> Result<PathBuf> {
+fn resolve_file(ctx: &Ctx, arg: Option<&str>) -> Result<PathBuf> {
     let Some(a) = arg else {
         return Err(Error::invalid("missing file or url argument"));
     };
@@ -96,7 +96,7 @@ fn resolve_file(ctx: &Ctx, arg: Option<&String>) -> Result<PathBuf> {
 
 /// Browser-style providers need a public URL. For local files we explain and
 /// open the provider's home page (upload happens in the browser).
-fn lens_like(arg: Option<&String>, p: &Provider, ctx: &mut Ctx) -> Result<Output> {
+fn lens_like(arg: Option<&str>, p: &Provider, ctx: &mut Ctx) -> Result<Output> {
     let Some(a) = arg else {
         return Err(Error::invalid(format!("usage: vision {} <image-url|file>", p.name)));
     };
@@ -124,7 +124,7 @@ fn lens_like(arg: Option<&String>, p: &Provider, ctx: &mut Ctx) -> Result<Output
 }
 
 /// Default-provider routing for `vision <target>`.
-fn default_route(arg: Option<&String>, ctx: &mut Ctx) -> Result<Output> {
+fn default_route(arg: Option<&str>, ctx: &mut Ctx) -> Result<Output> {
     let Some(a) = arg else {
         return Err(Error::invalid("usage: vision <file|url> (or `vision providers`)"));
     };
@@ -136,9 +136,9 @@ fn default_route(arg: Option<&String>, ctx: &mut Ctx) -> Result<Output> {
     }
 }
 
-fn run_tool(p: &Provider, arg: Option<&String>, ctx: &mut Ctx) -> Result<Output> {
+fn run_tool(p: &Provider, arg: Option<&str>, ctx: &mut Ctx) -> Result<Output> {
     let theme = ctx.theme();
-    if is_url(arg.map(String::as_str).unwrap_or("")) {
+    if is_url(arg.unwrap_or("")) {
         return Err(Error::invalid(
             "this provider needs a local file — try `vision screenshot` or download first",
         ));
@@ -171,7 +171,7 @@ fn run_tool(p: &Provider, arg: Option<&String>, ctx: &mut Ctx) -> Result<Output>
     Ok(output)
 }
 
-fn translate(arg: Option<&String>, ctx: &mut Ctx) -> Result<Output> {
+fn translate(arg: Option<&str>, ctx: &mut Ctx) -> Result<Output> {
     let theme = ctx.theme();
     let file = resolve_file(ctx, arg)?;
     let ocr = provider("ocr").ok_or_else(|| Error::other("ocr provider missing"))?;

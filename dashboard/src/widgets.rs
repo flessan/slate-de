@@ -10,7 +10,16 @@ use slate_core::style::{Line, Span};
 use slate_core::unicode::ellipsize;
 use slate_theme::Theme;
 
-use crate::probe::{human_bytes, human_rate, human_uptime, Battery, Probe};
+use crate::probe::{
+    human_bytes,
+    human_rate,
+    human_uptime,
+    volume_state,
+    now_playing,
+    git_state,
+    fetch_weather,
+    Battery,
+};
 use crate::{Widget, WidgetEnv};
 
 // ---------------------------------------------------------------------------
@@ -555,7 +564,7 @@ impl Widget for Volume {
             (self.pct, self.muted, self.available) = (Some(42), false, true);
             return;
         }
-        match crate::volume_state() {
+        match volume_state() {
             Some((pct, muted)) => {
                 self.pct = Some(pct);
                 self.muted = muted;
@@ -608,7 +617,7 @@ impl Widget for Music {
             self.track = Some("Bonobo — Cirrus".into());
             return;
         }
-        self.track = crate::now_playing();
+        self.track = now_playing();
     }
 
     fn render(&self, width: u16, theme: &Theme) -> Vec<Line> {
@@ -653,7 +662,7 @@ impl Widget for Git {
             (self.branch, self.dirty) = (Some("main".into()), 2);
             return;
         }
-        (self.branch, self.dirty) = crate::git_state(env.cwd);
+        (self.branch, self.dirty) = git_state(env.cwd);
     }
 
     fn render(&self, _width: u16, theme: &Theme) -> Vec<Line> {
@@ -741,7 +750,7 @@ impl Widget for Weather {
             return;
         }
         self.configured = env.weather_location.is_some();
-        self.text = env.weather_location.and_then(crate::fetch_weather);
+        self.text = env.weather_location.and_then(fetch_weather);
     }
 
     fn render(&self, _width: u16, theme: &Theme) -> Vec<Line> {

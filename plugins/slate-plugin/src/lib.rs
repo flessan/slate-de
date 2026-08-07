@@ -22,7 +22,7 @@ use std::fs;
 use std::path::{Path, PathBuf};
 use std::process::{Command, Stdio};
 
-use slate_config::{parser, Value};
+use slate_config::{Document, Value};
 use slate_core::error::{Error, Result};
 
 /// Environment variables passed to plugins (everything else is scrubbed).
@@ -51,7 +51,7 @@ impl Manifest {
     }
 
     pub fn parse(src: &str) -> Result<Manifest> {
-        let doc = parser::parse(src)?;
+        let doc = Document::parse(src)?;
         let get = |key: &str, required: bool| -> Result<String> {
             match doc_get(&doc, key) {
                 Some(v) => Ok(v),
