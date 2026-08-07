@@ -15,3 +15,4 @@ workspace = true
 [dependencies]
 slate-core = { path = "../../core" }
 slate-config = { path = "../../config" }
+toml.workspace = true

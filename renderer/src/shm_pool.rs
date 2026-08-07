@@ -70,7 +70,7 @@ impl ShmPool {
     }
 
     /// Flush mapped content back to the file descriptor.
-    pub fn flush(&self) -> std::io::Result<()> {
+    pub fn flush(&mut self) -> std::io::Result<()> {
         self.file.seek(SeekFrom::Start(0))?;
         self.file.write_all(&self.mapped)?;
         self.file.sync_all()?;

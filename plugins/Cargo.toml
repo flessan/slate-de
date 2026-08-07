@@ -5,3 +5,4 @@ edition.workspace = true
 
 [dependencies]
 serde = { workspace = true, optional = true }
+slate-plugin = { version = "0.1.0", path = "slate-plugin" }

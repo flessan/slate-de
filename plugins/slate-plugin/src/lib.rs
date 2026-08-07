@@ -73,7 +73,7 @@ impl Manifest {
                 "exec must be a relative path inside the plugin directory",
             ));
         }
-        let provides = match doc.get("provides") {
+        let provides = match slate_config::Document::get(&doc, "provides") {
             Some(Value::Array(items)) => {
                 items.iter().filter_map(|v| v.as_str().map(str::to_string)).collect()
             }

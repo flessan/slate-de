@@ -38,3 +38,4 @@ pub const VERSION: &str = env!("CARGO_PKG_VERSION");
 
 /// Application name used in paths, greetings, and logs.
 pub const APP_NAME: &str = "slate";
+pub mod traits;

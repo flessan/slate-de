@@ -156,6 +156,7 @@ impl KeyDecoder {
         };
         match b0 {
             0x00 => ParseResult::Key(Key::ctrl(' '), 1), // Ctrl+Space / Ctrl+@
+            0x08 => ParseResult::Key(Key::BACKSPACE, 1),
             0x01..=0x1A => {
                 // Control key or a C0 with special meaning on its own.
                 match b0 {
@@ -169,7 +170,6 @@ impl KeyDecoder {
             }
             0x1B => self.parse_escape(rest),
             0x7F => ParseResult::Key(Key::BACKSPACE, 1),
-            0x08 => ParseResult::Key(Key::BACKSPACE, 1), // some terminals send ^H
             _ => self.parse_utf8(),
         }
     }

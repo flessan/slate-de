@@ -4,7 +4,7 @@ version.workspace = true
 edition.workspace = true
 
 [dependencies]
-slate-core = { path = "../core" }
+slate-core = { version = "0.1.0", path = "../core" }
 ratatui = { workspace = true }
 thiserror = { workspace = true }
 serde = { workspace = true, optional = true }

@@ -3,8 +3,8 @@ use smithay::{
     delegate_compositor, delegate_output, delegate_seat, delegate_shm,
     reexports::wayland_server::{Display, DisplayHandle},
     wayland::{
-        compositor::{CompositorHandler, CompositorState},
-        output::{OutputHandler, OutputState},
+        compositor::{CompositorHandler, CompositorClientState},
+        output::{OutputHandler, Output},
         seat::{Seat, SeatHandler, SeatState},
         shm::{ShmHandler, ShmState},
     },
@@ -12,7 +12,7 @@ use smithay::{
 
 pub struct SlateState {
     pub display_handle: DisplayHandle,
-    pub compositor_state: CompositorState,
+    pub compositor_state: CompositorClientState,
     pub output_state: OutputState,
     pub seat_state: SeatState,
     pub shm_state: ShmState,
@@ -22,7 +22,7 @@ pub struct SlateState {
 impl SlateState {
     pub fn new(display: &mut Display<Self>) -> Self {
         let dh = display.handle();
-        let compositor_state = CompositorState::new::<Self>(&dh);
+        let compositor_state = CompositorClientState::new::<Self>(&dh);
         let output_state = OutputState::new();
         let mut seat_state = SeatState::new();
         let shm_state = ShmState::new::<Self>(&dh, Vec::new());
@@ -53,7 +53,7 @@ impl CompositorHandler for SlateState {
     fn client_compositor_state<'a>(
         &self,
         _client: &'a smithay::reexports::wayland_server::Client,
-    ) -> &'a smithay::wayland::compositor::ClientCompositorState {
+    ) -> &'a smithay::wayland::compositor::CompositorClientState {
         unimplemented!()
     }
     fn commit(
@@ -83,7 +83,7 @@ impl SeatHandler for SlateState {
     fn cursor_image(
         &mut self,
         _seat: &Seat<Self>,
-        _image: smithay::wayland::seat::CursorImageStatus,
+        _image: smithay::input::pointer::CursorImageStatus,
     ) {
     }
 }

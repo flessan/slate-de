@@ -1,5 +1,5 @@
 use crate::shm_pool::ShmPool;
-use core::traits::WaylandTuiRenderer;
+use slate_core::traits::WaylandTuiRenderer;
 use ratatui::layout::Rect;
 use ratatui::Frame;
 use thiserror::Error;

@@ -4,6 +4,6 @@ version.workspace = true
 edition.workspace = true
 
 [dependencies]
-smithay = { workspace = true }
+smithay = "0.4"
 wayland-server = { workspace = true }
 serde = { workspace = true, optional = true }
